@@ -8,4 +8,7 @@
         <li>{{ $book->created_at }}</li>
         <li>{{ $book->updated_at }}</li>
     </ul>
+
+    <h3>genre du livre : {{ $book->genre->name }}</h3>
+
 @endsection

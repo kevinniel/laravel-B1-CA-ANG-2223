@@ -7,7 +7,7 @@
     <title>Books</title>
 </head>
 <body style="padding-left: 200px;">
-    <h1>Books</h1>
+    <h1>Gestion bibliothèque</h1>
     @include('layout.menu')
     @yield('content')
 </body>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Book;
+use App\Models\Genre;
 
 class BookController extends Controller
 {
@@ -16,13 +17,15 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('book.create');
+        $genres = Genre::all();
+        return view('book.create', compact("genres"));
     }
 
     public function store(Request $request)
     {
         $book = new Book();
         $book->name = $request->get('name');
+        $book->genre_id = $request->get('genre_id');
         $book->save();
 
         return redirect()->route("book.index");
@@ -30,7 +33,7 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = Book::find($id);
+        $book = Book::with("genre")->find($id);
         
         return view('book.show', compact("book"));
     }
